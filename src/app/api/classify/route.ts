@@ -1,50 +1,88 @@
-import { NextResponse } from 'next/server'
-import OpenAI from 'openai'
-import type { ClassifyRequest, ClassifyResponse } from '@/types'
+import { NextResponse } from "next/server";
+import OpenAI from "openai";
+import type { ClassifyRequest, ClassifyResponse } from "@/types";
 
 // Model i limit tokenów są zablokowane — nie zmieniaj tych stałych.
-const MODEL = 'gpt-4o-mini' as const
-const MAX_TOKENS = 300
+const MODEL = "gpt-4o-mini" as const;
+const MAX_TOKENS = 300;
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// ────────────────────────────────────────────────────────────
-// POST /api/classify
-//
-// Wejście (body JSON):
-//   { message: string, company: string }
-//
-// Wyjście (JSON):
-//   {
-//     category:    "zamówienie" | "pytanie" | "reklamacja" | "spam"
-//     priority:    "high" | "medium" | "low"
-//     draft_reply: string  — gotowy szkic odpowiedzi po polsku
-//     confidence:  number  — 0–1, pewność klasyfikacji
-//   }
-//
-// TODO: Zaimplementuj ten endpoint.
-//
-// Wskazówki:
-//   - Wywołaj openai.chat.completions.create() używając stałych MODEL i MAX_TOKENS
-//   - Poproś model o odpowiedź w formacie JSON (response_format lub system prompt)
-//   - draft_reply powinien być w tonie pasującym do firmy i kategorii
-//   - Zwróć 400 gdy message lub company jest pusty
-// ────────────────────────────────────────────────────────────
+export async function POST(
+  req: Request,
+): Promise<NextResponse<ClassifyResponse | { error: string }>> {
+  const body: ClassifyRequest = await req.json();
+  if (!body.message?.trim() || !body.company?.trim()) {
+    return NextResponse.json(
+      { error: "Message and company are required." },
+      { status: 400 },
+    );
+  }
 
-export async function POST(req: Request): Promise<NextResponse<ClassifyResponse | { error: string }>> {
-  const body: ClassifyRequest = await req.json()
+  const completion = await openai.chat.completions.create({
+    model: MODEL,
+    max_tokens: MAX_TOKENS,
+    response_format: { type: "json_object" },
+    messages: [
+      {
+        role: "system",
+        content: `Jesteś asystentem AI klasyfikującym wiadomości klientów dla firmy. Odpowiadaj WYŁĄCZNIE poprawnym JSON-em o następującej strukturze:
+{
+  "category": "zamówienie" | "pytanie" | "reklamacja" | "spam",
+  "priority": "high" | "medium" | "low",
+  "draft_reply": "gotowy szkic odpowiedzi po polsku, w tonie profesjonalnym i przyjaznym, dopasowanym do firmy i kategorii wiadomości",
+  "confidence": 0.0-1.0
+}
 
-  // TODO: Walidacja wejścia
-  // if (!body.message || !body.company) { ... }
+Zasady priorytetów:
+- "high": pilne sprawy - wszystko wymagające szybkiej reakcji, duże zamówienia;
+- "medium": standardowe maila od klientów, które nie są pilne, ale wymagają odpowiedzi;
+- "low": proste pytania, spam;
 
-  // TODO: Wywołaj OpenAI API używając MODEL i MAX_TOKENS
-  // const completion = await openai.chat.completions.create({
-  //   model: MODEL,
-  //   max_tokens: MAX_TOKENS,
-  //   ...
-  // })
+draft_reply musi być gotową odpowiedzią w języku polskim, dopasowaną tonem do firmy i typu wiadomości.`,
+      },
+      {
+        role: "user",
+        content: `Firma: ${body.company}\n\nWiadomość klienta:\n${body.message}`,
+      },
+    ],
+  });
 
-  // TODO: Sparsuj odpowiedź i zwróć ClassifyResponse
+  const raw = completion.choices[0]?.message?.content ?? "{}";
 
-  return NextResponse.json({ error: 'Not implemented' }, { status: 501 })
+  const parsed = JSON.parse(raw) as ClassifyResponse;
+
+  const validCategories = [
+    "zamówienie",
+    "pytanie",
+    "reklamacja",
+    "spam",
+  ] as const;
+
+  const validPriorities = ["high", "medium", "low"] as const;
+
+  const result: ClassifyResponse = {
+    category: validCategories.includes(
+      parsed.category as (typeof validCategories)[number],
+    )
+      ? parsed.category
+      : "pytanie",
+
+    priority: validPriorities.includes(
+      parsed.priority as (typeof validPriorities)[number],
+    )
+      ? parsed.priority
+      : "medium",
+
+    draft_reply:
+      parsed.draft_reply ||
+      "Dziękujemy za wiadomość. Wkrótce się z Państwem skontaktujemy.",
+
+    confidence:
+      typeof parsed.confidence === "number"
+        ? Math.max(0, Math.min(1, parsed.confidence))
+        : 0.5,
+  };
+
+  return NextResponse.json(result);
 }
