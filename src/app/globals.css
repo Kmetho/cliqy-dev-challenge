@@ -1,15 +1,104 @@
 @import "tailwindcss";
 
-:root {
-  --bg: #09090b;
-  --card: rgba(255, 255, 255, 0.04);
-  --border: rgba(255, 255, 255, 0.08);
-  --ink: #f4f4f5;
-  --ink-dim: rgba(244, 244, 245, 0.6);
-  --emerald: #34d399;
-  --amber: #f59e0b;
-  --red: #f87171;
+@theme {
+  --color-onyx-50: oklch(96.07% 0.003 354.69);
+  --color-onyx-100: oklch(91.89% 0.008 357.81);
+  --color-onyx-200: oklch(83.64% 0.017 353.72);
+  --color-onyx-300: oklch(75.29% 0.023 356.55);
+  --color-onyx-400: oklch(66.65% 0.034 355.22);
+  --color-onyx-500: oklch(57.76% 0.044 356.71);
+  --color-onyx-600: oklch(49.34% 0.037 355.85);
+  --color-onyx-700: oklch(40.51% 0.028 357.57);
+  --color-onyx-800: oklch(31.09% 0.022 355.11);
+  --color-onyx-900: oklch(20.96% 0.012 359.14);
+  --color-onyx-950: oklch(17.84% 0.007 0.94);
+
+  --color-coral-50: oklch(94.46% 0.029 1.99);
+  --color-coral-100: oklch(89.24% 0.059 5.19);
+  --color-coral-200: oklch(79.35% 0.124 7.62);
+  --color-coral-300: oklch(71.10% 0.187 10.84);
+  --color-coral-400: oklch(65.45% 0.234 16.47);
+  --color-coral-500: oklch(63.07% 0.255 23.61);
+  --color-coral-600: oklch(53.33% 0.215 23.05);
+  --color-coral-700: oklch(43.13% 0.174 22.08);
+  --color-coral-800: oklch(32.26% 0.130 20.65);
+  --color-coral-900: oklch(20.40% 0.082 15.35);
+  --color-coral-950: oklch(16.60% 0.066 11.90);
+
+  --color-mist-50: oklch(95.69% 0.009 314.78);
+  --color-mist-100: oklch(91.54% 0.017 313.61);
+  --color-mist-200: oklch(82.84% 0.037 314.61);
+  --color-mist-300: oklch(74.05% 0.056 314.09);
+  --color-mist-400: oklch(65.17% 0.076 314.55);
+  --color-mist-500: oklch(55.92% 0.099 313.68);
+  --color-mist-600: oklch(47.89% 0.081 314.28);
+  --color-mist-700: oklch(39.25% 0.064 313.59);
+  --color-mist-800: oklch(30.22% 0.047 314.04);
+  --color-mist-900: oklch(20.51% 0.024 313.01);
+  --color-mist-950: oklch(17.40% 0.018 312.62);
+
+  --color-grape-50: oklch(95.76% 0.014 325.68);
+  --color-grape-100: oklch(91.55% 0.027 329.51);
+  --color-grape-200: oklch(83.15% 0.053 329.06);
+  --color-grape-300: oklch(74.61% 0.083 329.83);
+  --color-grape-400: oklch(66.13% 0.113 330.58);
+  --color-grape-500: oklch(57.91% 0.141 330.99);
+  --color-grape-600: oklch(49.37% 0.119 331.27);
+  --color-grape-700: oklch(40.47% 0.094 331);
+  --color-grape-800: oklch(31.07% 0.066 330.50);
+  --color-grape-900: oklch(20.85% 0.039 331.16);
+  --color-grape-950: oklch(17.61% 0.028 332.81);
+
+  --color-cyan: #00cecb;
+  --color-banana: #ffed66;
 }
+
+:root {
+  --bg: #0d0a0b;
+  --card: rgba(255, 94, 91, 0.04);
+  --border: rgba(0, 206, 203, 0.15);
+  --ink: #f3eff5;
+  --ink-dim: rgba(243, 239, 245, 0.6);
+}
+
+[data-theme="light"] {
+  --bg: #f3eff5;
+  --card: rgba(0, 206, 203, 0.06);
+  --border: rgba(0, 206, 203, 0.25);
+  --ink: #0d0a0b;
+  --ink-dim: rgba(13, 10, 11, 0.6);
+}
+
+/* ── Light mode: DARK text on LIGHT bg ── */
+
+/* Headings & body text → dark onyx */
+[data-theme="light"] .text-mist-50  { color: #0d0a0b; }
+[data-theme="light"] .text-mist-100 { color: #1a1517; }
+[data-theme="light"] .text-mist-200 { color: #2a2428; }
+
+/* Secondary text → medium-dark */
+[data-theme="light"] .text-mist-400 { color: #4a4248; }
+[data-theme="light"] .text-mist-500 { color: #5a5058; }
+[data-theme="light"] .text-onyx-400 { color: #4a4248; }
+
+/* Category/tag text → darker versions for contrast on light bg */
+[data-theme="light"] .text-coral-300 { color: #c0302d; }
+[data-theme="light"] .text-grape-300 { color: #6b2d6b; }
+[data-theme="light"] .text-cyan       { color: #008a88; }
+[data-theme="light"] .text-banana     { color: #8a7a00; }
+
+/* Label text */
+[data-theme="light"] .text-cyan\/60 { color: rgba(0, 110, 108, 0.85); }
+
+/* Backgrounds → light & airy */
+[data-theme="light"] .bg-onyx-800     { background-color: #e8e3eb; }
+[data-theme="light"] .bg-onyx-900\/60 { background-color: rgba(232, 227, 235, 0.7); }
+
+/* Filter pills inactive */
+[data-theme="light"] .text-mist-300   { color: #3a3238; }
+
+/* Toggle button bg */
+[data-theme="light"] .bg-onyx-900\/80 { background-color: rgba(243, 239, 245, 0.9); }
 
 * {
   box-sizing: border-box;
@@ -20,4 +109,5 @@ body {
   color: var(--ink);
   font-family: ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

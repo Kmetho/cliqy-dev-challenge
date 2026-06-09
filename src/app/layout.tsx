@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeToggle } from "./theme-toggle";
 
 export const metadata: Metadata = {
   title: "Cliqy Studio — Dev Challenge",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body>{children}</body>
+      <body>
+        <ThemeToggle />
+        {children}
+      </body>
     </html>
   );
 }
