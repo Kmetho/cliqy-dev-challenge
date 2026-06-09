@@ -16,14 +16,14 @@
   --color-coral-50: oklch(94.46% 0.029 1.99);
   --color-coral-100: oklch(89.24% 0.059 5.19);
   --color-coral-200: oklch(79.35% 0.124 7.62);
-  --color-coral-300: oklch(71.10% 0.187 10.84);
+  --color-coral-300: oklch(71.1% 0.187 10.84);
   --color-coral-400: oklch(65.45% 0.234 16.47);
   --color-coral-500: oklch(63.07% 0.255 23.61);
   --color-coral-600: oklch(53.33% 0.215 23.05);
   --color-coral-700: oklch(43.13% 0.174 22.08);
-  --color-coral-800: oklch(32.26% 0.130 20.65);
-  --color-coral-900: oklch(20.40% 0.082 15.35);
-  --color-coral-950: oklch(16.60% 0.066 11.90);
+  --color-coral-800: oklch(32.26% 0.13 20.65);
+  --color-coral-900: oklch(20.4% 0.082 15.35);
+  --color-coral-950: oklch(16.6% 0.066 11.9);
 
   --color-mist-50: oklch(95.69% 0.009 314.78);
   --color-mist-100: oklch(91.54% 0.017 313.61);
@@ -35,7 +35,7 @@
   --color-mist-700: oklch(39.25% 0.064 313.59);
   --color-mist-800: oklch(30.22% 0.047 314.04);
   --color-mist-900: oklch(20.51% 0.024 313.01);
-  --color-mist-950: oklch(17.40% 0.018 312.62);
+  --color-mist-950: oklch(17.4% 0.018 312.62);
 
   --color-grape-50: oklch(95.76% 0.014 325.68);
   --color-grape-100: oklch(91.55% 0.027 329.51);
@@ -45,7 +45,7 @@
   --color-grape-500: oklch(57.91% 0.141 330.99);
   --color-grape-600: oklch(49.37% 0.119 331.27);
   --color-grape-700: oklch(40.47% 0.094 331);
-  --color-grape-800: oklch(31.07% 0.066 330.50);
+  --color-grape-800: oklch(31.07% 0.066 330.5);
   --color-grape-900: oklch(20.85% 0.039 331.16);
   --color-grape-950: oklch(17.61% 0.028 332.81);
 
@@ -53,61 +53,298 @@
   --color-banana: #ffed66;
 }
 
+/* ── CSS variables — dark mode (default) ── */
+
 :root {
   --bg: #0d0a0b;
   --card: rgba(255, 94, 91, 0.04);
   --border: rgba(0, 206, 203, 0.15);
-  --ink: #f3eff5;
-  --ink-dim: rgba(243, 239, 245, 0.6);
+
+  --text-heading: #f3eff5;
+  --text-body: #d4cdd8;
+  --text-secondary: #8a8290;
+  --text-dim: #5a5258;
+  --text-accent: #00cecb;
+
+  --badge-zamowienie-bg: rgba(0, 206, 203, 0.1);
+  --badge-zamowienie-text: #00cecb;
+  --badge-zamowienie-border: rgba(0, 206, 203, 0.25);
+
+  --badge-pytanie-bg: rgba(150, 90, 170, 0.15);
+  --badge-pytanie-text: oklch(74.61% 0.083 329.83);
+  --badge-pytanie-border: rgba(150, 90, 170, 0.25);
+
+  --badge-reklamacja-bg: rgba(255, 94, 91, 0.15);
+  --badge-reklamacja-text: oklch(71.1% 0.187 10.84);
+  --badge-reklamacja-border: rgba(255, 94, 91, 0.25);
+
+  --badge-spam-bg: oklch(31.09% 0.022 355.11);
+  --badge-spam-text: oklch(66.65% 0.034 355.22);
+  --badge-spam-border: oklch(40.51% 0.028 357.57);
+
+  --dot-high: oklch(65.45% 0.234 16.47);
+  --dot-medium: #ffed66;
+  --dot-low: oklch(57.76% 0.044 356.71);
+
+  --draft-bg: rgba(20, 16, 18, 0.6);
+  --draft-border: rgba(0, 206, 203, 0.1);
+  --draft-label: rgba(0, 206, 203, 0.6);
+
+  --btn-approve-bg: rgba(0, 206, 203, 0.15);
+  --btn-approve-text: #00cecb;
+  --btn-approve-border: rgba(0, 206, 203, 0.25);
+  --btn-approve-hover: rgba(0, 206, 203, 0.25);
+
+  --btn-edit-bg: rgba(255, 237, 102, 0.1);
+  --btn-edit-text: #ffed66;
+  --btn-edit-border: rgba(255, 237, 102, 0.25);
+  --btn-edit-hover: rgba(255, 237, 102, 0.2);
+
+  --btn-reject-bg: rgba(255, 94, 91, 0.15);
+  --btn-reject-text: oklch(71.1% 0.187 10.84);
+  --btn-reject-border: rgba(255, 94, 91, 0.25);
+  --btn-reject-hover: rgba(255, 94, 91, 0.25);
+
+  --btn-save-bg: rgba(0, 206, 203, 0.15);
+  --btn-save-text: #00cecb;
+  --btn-save-border: rgba(0, 206, 203, 0.25);
+
+  --btn-cancel-bg: oklch(31.09% 0.022 355.11);
+  --btn-cancel-text: #8a8290;
+  --btn-cancel-border: oklch(40.51% 0.028 357.57);
+
+  --filter-bg: oklch(31.09% 0.022 355.11);
+  --filter-text: oklch(74.05% 0.056 314.09);
+  --filter-hover: oklch(40.51% 0.028 357.57);
+  --filter-active-bg: #00cecb;
+  --filter-active-text: #0d0a0b;
+
+  --input-bg: rgba(20, 16, 18, 0.6);
+  --input-border: rgba(0, 206, 203, 0.1);
+  --input-text: #d4cdd8;
+  --input-placeholder: #5a5258;
+  --input-focus-border: rgba(0, 206, 203, 0.4);
+
+  --toggle-bg: rgba(20, 16, 18, 0.8);
+  --toggle-border: rgba(0, 206, 203, 0.3);
+  --toggle-hover-border: rgba(0, 206, 203, 0.6);
 }
+
+/* ── CSS variables — light mode ── */
 
 [data-theme="light"] {
   --bg: #f3eff5;
   --card: rgba(0, 206, 203, 0.06);
   --border: rgba(0, 206, 203, 0.25);
-  --ink: #0d0a0b;
-  --ink-dim: rgba(13, 10, 11, 0.6);
+
+  --text-heading: #0d0a0b;
+  --text-body: #1a1517;
+  --text-secondary: #4a4248;
+  --text-dim: #6a6068;
+  --text-accent: #008a88;
+
+  --badge-zamowienie-bg: rgba(0, 206, 203, 0.1);
+  --badge-zamowienie-text: #008a88;
+  --badge-zamowienie-border: rgba(0, 206, 203, 0.3);
+
+  --badge-pytanie-bg: rgba(150, 90, 170, 0.1);
+  --badge-pytanie-text: #6b2d6b;
+  --badge-pytanie-border: rgba(150, 90, 170, 0.25);
+
+  --badge-reklamacja-bg: rgba(255, 94, 91, 0.1);
+  --badge-reklamacja-text: #c0302d;
+  --badge-reklamacja-border: rgba(255, 94, 91, 0.25);
+
+  --badge-spam-bg: #e8e3eb;
+  --badge-spam-text: #4a4248;
+  --badge-spam-border: #d4cdd8;
+
+  --dot-high: #d63230;
+  --dot-medium: #a89200;
+  --dot-low: #8a8290;
+
+  --draft-bg: rgba(232, 227, 235, 0.7);
+  --draft-border: rgba(0, 206, 203, 0.15);
+  --draft-label: rgba(0, 110, 108, 0.7);
+
+  --btn-approve-bg: rgba(0, 206, 203, 0.1);
+  --btn-approve-text: #008a88;
+  --btn-approve-border: rgba(0, 206, 203, 0.3);
+  --btn-approve-hover: rgba(0, 206, 203, 0.2);
+
+  --btn-edit-bg: rgba(180, 160, 0, 0.08);
+  --btn-edit-text: #8a7a00;
+  --btn-edit-border: rgba(180, 160, 0, 0.25);
+  --btn-edit-hover: rgba(180, 160, 0, 0.15);
+
+  --btn-reject-bg: rgba(255, 94, 91, 0.08);
+  --btn-reject-text: #c0302d;
+  --btn-reject-border: rgba(255, 94, 91, 0.25);
+  --btn-reject-hover: rgba(255, 94, 91, 0.15);
+
+  --btn-save-bg: rgba(0, 206, 203, 0.1);
+  --btn-save-text: #008a88;
+  --btn-save-border: rgba(0, 206, 203, 0.3);
+
+  --btn-cancel-bg: #e8e3eb;
+  --btn-cancel-text: #4a4248;
+  --btn-cancel-border: #d4cdd8;
+
+  --filter-bg: #e8e3eb;
+  --filter-text: #3a3238;
+  --filter-hover: #ddd7e0;
+  --filter-active-bg: #008a88;
+  --filter-active-text: #f3eff5;
+
+  --input-bg: rgba(232, 227, 235, 0.7);
+  --input-border: rgba(0, 206, 203, 0.15);
+  --input-text: #1a1517;
+  --input-placeholder: #8a8290;
+  --input-focus-border: rgba(0, 140, 138, 0.4);
+
+  --toggle-bg: rgba(243, 239, 245, 0.9);
+  --toggle-border: rgba(0, 140, 138, 0.3);
+  --toggle-hover-border: rgba(0, 140, 138, 0.6);
 }
 
-/* ── Light mode: DARK text on LIGHT bg ── */
+/* ── Base ── */
 
-/* Headings & body text → dark onyx */
-[data-theme="light"] .text-mist-50  { color: #0d0a0b; }
-[data-theme="light"] .text-mist-100 { color: #1a1517; }
-[data-theme="light"] .text-mist-200 { color: #2a2428; }
-
-/* Secondary text → medium-dark */
-[data-theme="light"] .text-mist-400 { color: #4a4248; }
-[data-theme="light"] .text-mist-500 { color: #5a5058; }
-[data-theme="light"] .text-onyx-400 { color: #4a4248; }
-
-/* Category/tag text → darker versions for contrast on light bg */
-[data-theme="light"] .text-coral-300 { color: #c0302d; }
-[data-theme="light"] .text-grape-300 { color: #6b2d6b; }
-[data-theme="light"] .text-cyan       { color: #008a88; }
-[data-theme="light"] .text-banana     { color: #8a7a00; }
-
-/* Label text */
-[data-theme="light"] .text-cyan\/60 { color: rgba(0, 110, 108, 0.85); }
-
-/* Backgrounds → light & airy */
-[data-theme="light"] .bg-onyx-800     { background-color: #e8e3eb; }
-[data-theme="light"] .bg-onyx-900\/60 { background-color: rgba(232, 227, 235, 0.7); }
-
-/* Filter pills inactive */
-[data-theme="light"] .text-mist-300   { color: #3a3238; }
-
-/* Toggle button bg */
-[data-theme="light"] .bg-onyx-900\/80 { background-color: rgba(243, 239, 245, 0.9); }
-
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   background: var(--bg);
-  color: var(--ink);
+  color: var(--text-body);
   font-family: ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Typography ── */
+
+.subtitle    { color: var(--text-accent); }
+.title       { color: var(--text-heading); }
+.meta        { color: var(--text-secondary); }
+.empty-state { color: var(--text-dim); }
+
+/* ── Cards ── */
+
+.card {
+  background: var(--card);
+  border-color: var(--border);
+  transition: opacity 0.3s ease;
+}
+
+.card-meta   { color: var(--text-dim); }
+.card-label  { color: var(--text-secondary); }
+.card-text   { color: var(--text-body); }
+.status-text { color: var(--text-dim); }
+
+/* ── Category badges ── */
+
+.badge-zamowienie {
+  background: var(--badge-zamowienie-bg);
+  color: var(--badge-zamowienie-text);
+  border: 1px solid var(--badge-zamowienie-border);
+}
+.badge-pytanie {
+  background: var(--badge-pytanie-bg);
+  color: var(--badge-pytanie-text);
+  border: 1px solid var(--badge-pytanie-border);
+}
+.badge-reklamacja {
+  background: var(--badge-reklamacja-bg);
+  color: var(--badge-reklamacja-text);
+  border: 1px solid var(--badge-reklamacja-border);
+}
+.badge-spam {
+  background: var(--badge-spam-bg);
+  color: var(--badge-spam-text);
+  border: 1px solid var(--badge-spam-border);
+}
+
+/* ── Priority dots ── */
+
+.dot-high   { background: var(--dot-high); }
+.dot-medium { background: var(--dot-medium); }
+.dot-low    { background: var(--dot-low); }
+
+/* ── Draft box ── */
+
+.draft-box {
+  background: var(--draft-bg);
+  border: 1px solid var(--draft-border);
+}
+.draft-label { color: var(--draft-label); }
+.draft-text  { color: var(--text-body); }
+
+/* ── Action buttons ── */
+
+.btn-approve {
+  background: var(--btn-approve-bg);
+  color: var(--btn-approve-text);
+  border: 1px solid var(--btn-approve-border);
+}
+.btn-approve:hover { background: var(--btn-approve-hover); }
+
+.btn-edit-action {
+  background: var(--btn-edit-bg);
+  color: var(--btn-edit-text);
+  border: 1px solid var(--btn-edit-border);
+}
+.btn-edit-action:hover { background: var(--btn-edit-hover); }
+
+.btn-reject {
+  background: var(--btn-reject-bg);
+  color: var(--btn-reject-text);
+  border: 1px solid var(--btn-reject-border);
+}
+.btn-reject:hover { background: var(--btn-reject-hover); }
+
+.btn-save {
+  background: var(--btn-save-bg);
+  color: var(--btn-save-text);
+  border: 1px solid var(--btn-save-border);
+}
+
+.btn-cancel {
+  background: var(--btn-cancel-bg);
+  color: var(--btn-cancel-text);
+  border: 1px solid var(--btn-cancel-border);
+}
+
+/* ── Filter pills ── */
+
+.filter-pill {
+  background: var(--filter-bg);
+  color: var(--filter-text);
+}
+.filter-pill:hover { background: var(--filter-hover); }
+
+.filter-pill-active {
+  background: var(--filter-active-bg);
+  color: var(--filter-active-text);
+}
+
+/* ── Inputs ── */
+
+.input-field {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
+}
+.input-field::placeholder { color: var(--input-placeholder); }
+.input-field:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+}
+
+/* ── Theme toggle ── */
+
+.theme-toggle {
+  background: var(--toggle-bg);
+  border: 2px solid var(--toggle-border);
+}
+.theme-toggle:hover {
+  border-color: var(--toggle-hover-border);
+  transform: scale(1.1);
 }
